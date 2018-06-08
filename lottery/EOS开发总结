@@ -1,0 +1,65 @@
+版本：EOSIO Dawn 3.0
+$ git clone https://github.com/EOSIO/eos --recursive
+$ cd eos
+$ ./eosio_build.sh
+$ cd build && make install
+
+cd build/programs/nodeos
+./nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::account_history_api_plugin
+
+开发只能合约
+查看合约信息
+./cleos -p 8888 get info
+
+
+编译：
+eosiocpp -o Hello.wast Hello.cpp
+eosiocpp -g Hello.abi Hello.cpp
+创建钱包：
+cleos wallet create  //创建了一个钱包
+PW5Kg9Ls6D5h4WuUjqFFKEvmuTdnz2Bi1wUsNjNdXxqyhCZvf5t5N
+
+
+cleos wallet keys  查看钱包中所有的钥匙对
+cleos create key
+Private key: 5KkyfUwABtuS6QAuh9kfcwPKhkrqLecrpdUm4r5rbbwFs7qqY8B
+Public key: EOS6ayGDoA6eAgJcraPXn2RezZjakYBQA1TcAzDueNDX2zLi9oYsw
+
+Private key: 5JV59JRqz1VvYn4FnEAcj2EN5Ga71yNgWmHZzSVETP3x7pTPLKq
+Public key: EOS7mGyofiCwvu4azHsoMDnCNxAoCC87DZc4YvNvAdGCLAhPHPBv7
+
+解锁钱包：
+cleos wallet unlock --password PW5KVunyEWahpzCTJG2bHcTxCXpazMdZ9V6KFCaoLpfeiQ24ib5tQ
+锁定钱包
+cleos wallet lock
+
+
+
+//向钱包导入私钥
+cleos wallet import 5K7QdknUZsF9apdBhD8TDMZGJjw8zJ8esYwS173YyFRv2453Z9t
+
+创建账户：
+cleos create account eosio user EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4 EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
+根据密匙查询控制的账户
+cleos get accounts EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
+
+//发布合约 eosio.bios, 合约可以创建多个token
+cleos set contract user build/contracts/eosio.token -p user
+
+cleos push action user create '["eosio", "100000000.000 EOS", 0, 0, 0]' -p user
+
+//我们用授权参数-p user表示user授权了此操作。
+#cleos set contract eosio build/contracts/eosio.bios -p eosio
+
+cleos get accounts EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
+
+然后使用系统默认的账户（inita）授权创建新账户（比如currency），将上面创建的私钥分别作为新账户的owner和active的公钥。
+cleos create account inita currency EOS7PxAXT9cueFKSRdfWzJ2qhM7UMA38XBKGkxDBetcoRQ18BvnFy ACTIVE_PUBLIC_KEY
+
+password:PW5Jz5E8JS9iC52GrDkLRXKtQZz9wa4AgwFzLVGF945T9Mq8DRPBE
+
+Private key: 5KFxQ3JcCRVNUjNBN9cTZJ1eP69N9FK5CGQexAxeVrftsNjsYCW
+Public key: EOS7PxAXT9cueFKSRdfWzJ2qhM7UMA38XBKGkxDBetcoRQ18BvnFy
+
+Private key: 5KkMmva5qsAvKrvSLdThxm1UPzH4sQ53o2TrmPMfqLgNWhDbukL
+Public key: EOS5B2bEpDyutgQzPaX9f4uP5AF5UbL2nP3oQu6aRtsxHy8hiu2vF

@@ -1,0 +1,100 @@
+
+make test
+sudo make install
+
+配置config.ini  ~/.local/share/eosio/nodeos/config/
+部分配置修改：
+Enable production on a stale chain, since a single-node test chain is pretty much always stale
+
+enable-stale-production = true
+Enable block production with the testnet producers
+
+producer-name = eosio
+Load the block producer plugin, so you can produce blocks
+
+plugin = eosio::producer_plugin
+Wallet plugin
+
+plugin = eosio::wallet_api_plugin
+As well as API and HTTP plugins
+
+plugin = eosio::chain_api_plugin
+
+plugin = eosio::http_plugin
+This will be used by the validation step below, to view account history
+
+plugin = eosio::history_api_plugin
+
+
+启动节点 ~/work/git/eos/build/program/nodeos ./node
+
+error1:
+database dirty flag set (likely due to unclean shutdown): replay required
+resolve:
+--delete-all-blocks
+
+
+创建钱包：
+cleos wallet create
+"/usr/local/bin/keosd" launched
+Creating wallet: default
+Save password to use in the future to unlock this wallet.
+Without password imported keys will not be retrievable.
+"PW5KExHJMisHHeFa9Yrpoen1nwpJvmC5REAp3qshTbvUEjS7a8Xut"
+
+
+cleos set contract eosio ../../contracts/eosio.bios/ -p eosio
+Reading WAST/WASM from ../../contracts/eosio.bios/eosio.bios.wasm...
+Using already assembled WASM...
+Publishing contract...
+executed transaction: cd17cd7c8030d643cea44d15eadf64ed3dd0ae00d046e2e2d1001eaa022c2bef  3712 bytes  550 us
+#         eosio <= eosio::setcode               {"account":"eosio","vmtype":0,"vmversion":0,"code":"0061736d0100000001621260037f7e7f0060057f7e7e7e7e...
+#         eosio <= eosio::setabi                {"account":"eosio","abi":"0e656f73696f3a3a6162692f312e30050c6163636f756e745f6e616d65046e616d650f7065...
+warning: transaction executed locally, but may not be confirmed by the network yet
+
+
+
+ ./cleos create key
+Private key: 5K9er2nmHJHBhfduAm2DNXA4nfLtMhh81ATpC6cs7hRFianR6u1
+Public key: EOS72hgaLATJUM18k2Tm5vppQ1cLVjkkfRChobrqPo6FYBwG75A4z
+wangxy@wangxy:~/work/git/eos/build/programs/cleos$ ./cleos create key
+Private key: 5JdMgrHDf7uRGN6YkaHQaKSNVLMAZdd5V7z571Z7ySvJnGi4yTE
+Public key: EOS6MDQZEtprrD3e3T24dL9c1V4e9EhED1ukofeEKQUcAjjkoHCqe
+
+
+wangxy@wangxy:~/work/git/eos/build/programs/cleos$ cleos wallet import 5K9er2nmHJHBhfduAm2DNXA4nfLtMhh81ATpC6cs7hRFianR6u1
+imported private key for: EOS72hgaLATJUM18k2Tm5vppQ1cLVjkkfRChobrqPo6FYBwG75A4z
+wangxy@wangxy:~/work/git/eos/build/programs/cleos$ cleos wallet import 5JdMgrHDf7uRGN6YkaHQaKSNVLMAZdd5V7z571Z7ySvJnGi4yTE
+imported private key for: EOS6MDQZEtprrD3e3T24dL9c1V4e9EhED1ukofeEKQUcAjjkoHCqe
+
+
+
+创建账户currency，其中eosio为创建者
+./cleos create account eosio currency EOS72hgaLATJUM18k2Tm5vppQ1cLVjkkfRChobrqPo6FYBwG75A4z
+executed transaction: a2fe3a1843bae3b5e3ed432448f74139bb3480473ad8dcb2fa950bf26bddab4d  200 bytes  210 us
+#         eosio <= eosio::newaccount            {"creator":"eosio","name":"currency","owner":{"threshold":1,"keys":[{"key":"EOS72hgaLATJUM18k2Tm5vpp...
+warning: transaction executed locally, but may not be confirmed by the network yet
+
+
+wangxy@wangxy:~/work/git/eos/build/contracts$ cleos set contract currency ./eosio.token/
+Reading WAST/WASM from ./eosio.token/eosio.token.wasm...
+Using already assembled WASM...
+Publishing contract...
+executed transaction: b78b79d59cc9bce8dda1286ae3d596aaca3bf7df1540c2649a41d35843aed392  8104 bytes  796 us
+#         eosio <= eosio::setcode               {"account":"currency","vmtype":0,"vmversion":0,"code":"0061736d01000000017e1560037f7e7f0060057f7e7e7...
+#         eosio <= eosio::setabi                {"account":"currency","abi":"0e656f73696f3a3a6162692f312e30010c6163636f756e745f6e616d65046e616d65050...
+warning: transaction executed locally, but may not be confirmed by the network yet
+wangxy@wangxy:~/work/git/eos/build/contracts$ cleos push action currency create '["eosio", "10000000000.000 EOS", 0, 0, 0]' -p currency
+executed transaction: b0a56e3dc90a29f5cd40673be36f11a83e03cee071c9eeca90546493a0186993  120 bytes  862 us
+#      currency <= currency::create             {"issuer":"eosio","maximum_supply":"10000000000.000 EOS"}
+warning: transaction executed locally, but may not be confirmed by the network yet
+wangxy@wangxy:~/work/git/eos/build/contracts$ cleos push action currency issue '["eosio", "100000000.000 EOS", "issue"]' -p eosio
+executed transaction: 0626ce2b94cd13b09091162f93bd70854c7a46b07a9ad1b332d2dd1c123f5b48  128 bytes  376 us
+#      currency <= currency::issue              {"to":"eosio","quantity":"100000000.000 EOS","memo":"issue"}
+warning: transaction executed locally, but may not be confirmed by the network yet
+wangxy@wangxy:~/work/git/eos/build/contracts$ cleos get currency balance currency eosio
+100000000.000 EOS
+
+
+cleos get table eosio.token eosio accounts
+

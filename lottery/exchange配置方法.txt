@@ -1,0 +1,4 @@
+1.unbuntu下安装 phpstudy：
+
+下载完整版：http://lamp.phpstudy.net/phpstudy-all.bin
+参考教程链接：https://blog.csdn.net/xie_jinfen/article/details/50517027

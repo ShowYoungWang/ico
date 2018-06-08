@@ -1,0 +1,46 @@
+合约一主要事件：
+
+LogLotteryEvent(
+uint256 indexed roundNO,                    //游戏轮数，依次递增，保证不重复
+address msg.sender,                         //玩家的地址
+bool indexed bWinState,                     //是否中奖标志
+uint256 msg.value,                          //赌注大小
+uint8 gameNumberOne[roundNO],               //第一位结果
+uint8 gameNumberTwo[roundNO],               //第二位结果
+uint8 gameNumberThree[roundNO],             //第三位结果
+uint256 lotteryWin                          //中奖数量
+);
+
+
+合约二主要事件：(参考合约一描述)
+
+LogLotteryEvent(
+uint256 _roundNo,
+address indexed _player,
+bool _isWin,
+uint256 indexed _betValue,
+uint8 _one,
+uint256 indexed _winValue);
+
+合约三主要事件:
+LogBet(
+address indexed player,         //玩家地址
+uint bethash,                   //玩家选号
+uint blocknumber,               //当前block总数
+uint betsize                    //赌注大小
+);
+
+未中奖记录
+LogLoss(
+address indexed player,         //玩家地址
+uint bethash,                   //玩家选号
+uint hash                       //系统出号
+);
+
+中奖记录
+LogWin(
+address indexed player,         //玩家地址
+uint bethash,                   //玩家选号
+uint hash,                      //系统出号
+uint prize                      //中奖金额
+);

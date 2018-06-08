@@ -1,0 +1,26 @@
+
+name   (NeiMoBi) string 代币名称,例如NeiMoBi(NMB)
+symbol   (NMB) string //代币符号
+price   (500000) uint256 //代币价格1eth = 500000NMB
+
+totalSupply   (20000000000000000000000000000) uint256 发行代币数量,单位的为:eth
+deadline   (1521188477) uint256 众筹结束时间
+decimals   (18) uint8 小数位数,保持跟以太币同步
+
+beneficiary   (0x8db62b8c88f7011ffd95ac5d9385e6548d5e92b7) address 众筹收益帐号
+
+tokenOwner  (0x8db62b8c88f7011ffd95ac5d9385e6548d5e92b7) address 代币账号
+standard   (https://www.test.com) string //自定义数据
+
+bonus01Start   (0) uint256 //第一阶段加成的区间最小值
+bonus01End   (3) uint256 //第一阶段加成的区间最大值
+bonus01   (50) uint256 //第一阶段加成比例,如:50%加成,显示50
+
+bonus02Start   (4) uint256 //第二阶段加成区间的最小值
+bonus02End   (5)   uint256  ()   第二阶段加成的区间最大值
+bonus02   (100) uint256 //第二阶段加成比例
+
+minGoal   (5000000000000000000) uint256 //众筹最小目标,单位eth
+maxGoal   (10000000000000000000) uint256 //众筹最大目标,单位eth
+frozenAccountByOwner    //被管理员冻结的帐号
+frozenAccountCraw       //冻结帐号的数据

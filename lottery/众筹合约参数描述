@@ -1,0 +1,26 @@
+1. bonus02End   5 uint256  ()   第二阶段加成的区间最大值
+2. name   NeiMoBi string 代币名称,例如NeiMoBi(NMB)
+3. totalSupply   20000000000000000000000000000 uint256 发行代币数量,单位的为:eth
+4. deadline   1521188477 uint256 众筹结束时间
+5. decimals   18 uint8 小数位数,保持跟以太币同步
+6. beneficiary   0x8db62b8c88f7011ffd95ac5d9385e6548d5e92b7 address 众筹收益帐号
+7. tokenAmountRasied   0 uint256 众筹发行的代币数量 --预售
+8. standard   https://www.test.com string //自定义数据
+9. balanceOf     //拥有代币所有帐号
+10. bonus   0 uint256
+11. amountRaised   0 uint256 //众筹的代币数量,单位:wei   15000
+12. bonus01Start   0 uint256 //第一阶段加成的区间最小值
+13. freeCrawDeadline   1521189077 uint256 //冻结帐号的结束时间
+14. symbol   NMB string //代币符号
+15. price   500000 uint256 //代币价格1eth = 500000NMB
+16. bonus02Start   4 uint256 //第二阶段加成区间的最小值
+17. bonus02   100 uint256 //第二阶段加成比例
+18. frozenAccountCraw     //冻结帐号的数据
+19. bonus01   50 uint256 //第一阶段加成比例,如:50%加成,显示50
+20. crowdsaleClosed   False bool //众筹是否关闭
+21. fundingGoalReached   False bool //众筹目标是否达到
+22. minGoal   5000000000000000000 uint256 //众筹最小目标,单位eth
+23. balance
+24. frozenAccountByOwner //被管理员冻结的帐号
+25. bonus01End   3 uint256 //第一阶段加成的区间最大值
+26. maxGoal   10000000000000000000 uint256 //众筹最大目标,单位eth
