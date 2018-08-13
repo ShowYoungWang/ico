@@ -1,0 +1,25 @@
+TEST001
+address:0x004Aed3Ac1e85FD3038f314A56e39A78a5EBaE1f
+owner recovery phrase:
+unworried calculus reoccupy obsolete swizzle dipped poison spotted confusing primp unblessed tinwork
+
+TEST002
+address:
+0x00d8b13402644e48423D5d53F4204A0418f67991
+recovery phrase:
+finch earthen frosty utmost animating underpaid falcon finalize unsold bobbed shun scientist
+
+
+TEST003
+address: 0x00C72c0c0F1f60AfCf53d34b4c5b1000682C2BeD
+owner recovery phrase:
+cradle stays drowsily strenuous dugout underhand murkiness unglazed viewing abroad superhero satirical
+
+TEST005
+address:0x33d2AF6c1c7D3D926871732bA8F9acdBAae6c342
+privatekey:376a20dc33d0d315d6729469ea8a32c4d9b27a2704949a77cc44c214f87b32f9
+
+
+TEST004
+address:0x9e4D5a54C5ec926219c84D0dA15a4b87EA4cD8C3
+private:5A1F9B1364D0EA2BE2307FF1A2242B7149152DF3A155475E806B4DA19C94209C
